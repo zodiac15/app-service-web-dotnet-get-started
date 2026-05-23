@@ -1,10 +1,11 @@
 pipeline {
     agent any
     stages {
-        stage('Build') {
+        stage('Checkout') {
             steps {
-               echo "Build Stage"
-            }
+                // Explicitly clones the code using the job's SCM configuration
+                checkout scm
+            }    
         }
         stage('Test') {
             steps {
