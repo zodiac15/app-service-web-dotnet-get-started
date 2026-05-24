@@ -1,6 +1,6 @@
 pipeline {
     agent {
-        docker { image 'dhi.io/dotnet:10-sdk' }
+        docker { image 'mcr.microsoft.com/dotnet/aspnet:10.0' }
     }
     stages {
         stage('Checkout') {
