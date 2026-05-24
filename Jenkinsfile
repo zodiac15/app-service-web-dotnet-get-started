@@ -1,6 +1,13 @@
 pipeline {
     agent {
-        docker { image 'mcr.microsoft.com/dotnet/aspnet:10.0' }
+        docker { 
+            // Using 8.0 LTS for maximum compatibility with the Azure sample app
+            image 'mcr.microsoft.com/dotnet/sdk:8.0'
+            
+            // -u root: Grants file write permissions for the workspace
+            // -e HOME=/tmp -e DOTNET_CLI_HOME=/tmp: Fixes the Jenkins SDK pathing bug
+            args '-u root -e HOME=/tmp -e DOTNET_CLI_HOME=/tmp'    
+        }
     }
     stages {
         stage('Checkout') {
